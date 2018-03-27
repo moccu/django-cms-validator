@@ -11,5 +11,9 @@ test:
 	./node_modules/.bin/jest --coverage --verbose
 
 
+coverage:
+	cat ./coverage/lcov.info | ./node_modules/.bin/coveralls
+
+
 release:
 	./node_modules/.bin/webpack

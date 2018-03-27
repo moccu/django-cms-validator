@@ -7,6 +7,10 @@
     "validate": "make validate",
     "test": "make test"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/moccu/django-cms-validator.git"
+  },
   "author": "Norman Rusch",
   "license": "MIT",
   "devDependencies": {
