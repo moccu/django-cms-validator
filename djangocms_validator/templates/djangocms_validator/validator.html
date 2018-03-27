@@ -1,0 +1,16 @@
+{% block validator %}
+	{% if request.toolbar.show_toolbar %}
+		{% load i18n %}
+		{% load static from staticfiles %}
+
+		{% block validator_contents %}
+			{% block styles %}<link rel="stylesheet" type="text/css" href="{% block styles_src %}{% static 'djangocms_validator/validator.min.css' %}{% endblock %}" />{% endblock %}
+			{% block script %}<script type="text/javascript" src="{% block script_src %}{% static 'djangocms_validator/validator.min.js' %}{% endblock %}" async defer></script>{% endblock %}
+			{% block setup %}<script type="text/javascript">
+				new window.CMSValidator.Validator({
+					rules: window.CMSValidator.rules
+				}).setup();
+			</script>{% endblock %}
+		{% endblock %}
+	{% endif %}
+{% endblock %}

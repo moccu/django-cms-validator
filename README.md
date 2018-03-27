@@ -1,0 +1,3 @@
+# django-cms-validator
+
+Validates the content of your django cms pages before you publish them...
