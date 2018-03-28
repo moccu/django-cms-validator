@@ -1,10 +1,10 @@
 import {Rule} from './Base';
 
 
-export class NoLinkTitleRule extends Rule {
+export class LinkNoTitleRule extends Rule {
 
 	get name() {
-		return 'noLinkTitle';
+		return 'linkNoTitle';
 	}
 
 	get selector() {
