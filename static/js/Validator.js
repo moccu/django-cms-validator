@@ -15,9 +15,9 @@ const
 			layer: ({errors, options}) => {
 				return `
 					<p>${options.labels.layerTitle}</p>
-					<ul>${errors.forEach(error =>
-						`<li>${error.message}</li>`
-					)}</ul>
+					<ul>${errors.map(error => {
+						return `<li>${error.label}</li>`;
+					}).join('')}</ul>
 					<label for="cms-validator-ignore">
 						<input type="checkbox" name="cms-validator-ignore" id="cms-validator-ignore" value="ignore" />
 						<span>${options.labels.layerCheckboxLabel}</span>
