@@ -47,32 +47,32 @@ describe('The base rule', () => {
 	});
 
 	test('should throw an error when no valid name getter is defined', () => {
-		var rule = new Rule();
+		const rule = new Rule();
 		expect(() => {rule.name}).toThrowError('Define a name for rule.');
 	});
 
 	test('should throw an error when no valid label getter is defined', () => {
-		var rule = new Rule();
+		const rule = new Rule();
 		expect(() => {rule.label}).toThrowError('Define a message label for rule.');
 	});
 
 	test('should throw an error when no valid selector getter is defined', () => {
-		var rule = new Rule();
+		const rule = new Rule();
 		expect(() => {rule.selector}).toThrowError('Define a selector for rule.');
 	});
 
 	test('should throw an error when no validation function is set', () => {
-		var rule = new Rule();
+		const rule = new Rule();
 		expect(rule.validate).toThrowError('Define validation for rule.');
 	});
 
 	test('should return default exclude selector', () => {
-		var rule = new Rule();
+		const rule = new Rule();
 		expect(rule.excludeSelector).toBe('.cms');
 	});
 
 	test('should exclude elements inside exclude selector from validation', () => {
-		var
+		const
 			rule = new TestRule(),
 			spy = jest.spyOn(rule, 'validate')
 		;
@@ -82,7 +82,7 @@ describe('The base rule', () => {
 	});
 
 	test('should return element and label in errors', () => {
-		var rule = new TestRule();
+		const rule = new TestRule();
 		expect(rule.test()).toEqual([
 			{element: document.getElementById('one'), label: rule.label},
 			{element: document.getElementById('two'), label: rule.label},
@@ -92,7 +92,7 @@ describe('The base rule', () => {
 	});
 
 	test('should use custom label for test from options', () => {
-		var
+		const
 			label = 'This is a custom label by name',
 			rule = new TestRule({labels: {'test-rule': label}})
 		;

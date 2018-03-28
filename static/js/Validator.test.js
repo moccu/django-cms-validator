@@ -61,7 +61,7 @@ describe('The validator', () => {
 	});
 
 	test('should have expected defaults', () => {
-		var validator = new Validator();
+		const validator = new Validator();
 		expect(Object.keys(validator.options)).toEqual([
 			'rules',
 			'selectors',
@@ -71,19 +71,19 @@ describe('The validator', () => {
 	});
 
 	test('should have expected default rules', () => {
-		var validator = new Validator();
+		const validator = new Validator();
 		expect(validator.options.rules).toEqual([]);
 	});
 
 	test('should have expected default selectors', () => {
-		var validator = new Validator();
+		const validator = new Validator();
 		expect(validator.options.selectors).toEqual({
 			publish: '.cms-btn-publish'
 		});
 	});
 
 	test('should have expected default labels', () => {
-		var validator = new Validator();
+		const validator = new Validator();
 		expect(validator.options.labels).toEqual({
 			layerTitle: 'Errors found',
 			layerCheckboxLabel: 'I want to publish the site...'
@@ -91,7 +91,7 @@ describe('The validator', () => {
 	});
 
 	test('should have expected default templates', () => {
-		var validator = new Validator();
+		const validator = new Validator();
 		expect(validator.options.templates).toEqual({
 			// Pass same reference but test object structure
 			layer: validator.options.templates.layer
@@ -99,7 +99,7 @@ describe('The validator', () => {
 	});
 
 	test('should not add click listener on publish button when not call setup()', () => {
-		var
+		const
 			button = document.getElementById('button'),
 			spy = jest.spyOn(button, 'addEventListener')
 		;
@@ -120,12 +120,7 @@ describe('The validator', () => {
 	});
 
 	test('should validate using given rules', () => {
-		var
-			validator = new Validator({rules: [
-				NoLinkTitleRule,
-				NoLinkRelRule
-			]})
-		;
+		const validator = new Validator({rules: [NoLinkTitleRule, NoLinkRelRule]});
 
 		expect(validator.validate()).toEqual([
 			{
@@ -149,47 +144,39 @@ describe('The validator', () => {
 	});
 
 	test('should create layer with title when user clicks on publish', () => {
-		var
-			validator = new Validator({rules: [NoLinkTitleRule, NoLinkRelRule]}),
-			title
-		;
+		const validator = new Validator({rules: [NoLinkTitleRule, NoLinkRelRule]});
 
 		validator.setup();
 		document.getElementById('button').click();
-		title = document.querySelectorAll('.cms-validation-layer > p')
 
+		let title = document.querySelectorAll('.cms-validation-layer > p')
 		expect(title).toHaveLength(1);
 		expect(title[0].textContent).toBe('Errors found');
 	});
 
 	test('should create layer with rule labels when user clicks on publish', () => {
-		var
-			validator = new Validator({rules: [NoLinkTitleRule, NoLinkRelRule]}),
-			items
-		;
+		const validator = new Validator({rules: [NoLinkTitleRule, NoLinkRelRule]});
 
 		validator.setup();
 		document.getElementById('button').click();
-		items = document.querySelectorAll('.cms-validation-layer > ul > li');
 
+		let items = document.querySelectorAll('.cms-validation-layer > ul > li');
 		expect(items).toHaveLength(2);
 		expect(items[0].textContent).toBe('The link has no title');
 		expect(items[1].textContent).toBe( 'The link has no rel-Attribute but uses target="_blank"');
 	});
 
 	test('should create layer with checkbox when user clicks on publish', () => {
-		var
-			validator = new Validator({rules: [NoLinkTitleRule, NoLinkRelRule]}),
-			label,
-			checkbox,
-			span
-		;
+		const validator = new Validator({rules: [NoLinkTitleRule, NoLinkRelRule]});
 
 		validator.setup();
 		document.getElementById('button').click();
-		label = document.querySelectorAll('.cms-validation-layer > label');
-		checkbox = document.querySelectorAll('.cms-validation-layer > label > input[type="checkbox"]');
-		span = document.querySelectorAll('.cms-validation-layer > label > span');
+
+		let
+			label = document.querySelectorAll('.cms-validation-layer > label'),
+			checkbox = document.querySelectorAll('.cms-validation-layer > label > input[type="checkbox"]'),
+			span = document.querySelectorAll('.cms-validation-layer > label > span')
+		;
 
 		expect(label).toHaveLength(1);
 		expect(label[0].getAttribute('for')).toBe('cms-validator-ignore');
@@ -204,7 +191,7 @@ describe('The validator', () => {
 	});
 
 	test('should prevent user from publish the page when contains errors', () => {
-		var
+		const
 			validator = new Validator({rules: [NoLinkTitleRule, NoLinkRelRule]}),
 			button = document.getElementById('button'),
 			helper = {callback: () => {}},
@@ -219,7 +206,7 @@ describe('The validator', () => {
 	});
 
 	test('should publish the page when not contains errors', () => {
-		var
+		const
 			validator = new Validator({rules: []}),
 			button = document.getElementById('button'),
 			helper = {callback: () => {}},
@@ -234,7 +221,7 @@ describe('The validator', () => {
 	});
 
 	test('should publish the page when the user forces publishing by checking the checkbox in layer', () => {
-		var
+		const
 			validator = new Validator({rules: [NoLinkTitleRule, NoLinkRelRule]}),
 			button = document.getElementById('button'),
 			helper = {callback: () => {}},
@@ -254,16 +241,15 @@ describe('The validator', () => {
 	});
 
 	test('should update layer when user fixes errors', () => {
-		var
+		const
 			validator = new Validator({rules: [NoLinkTitleRule, NoLinkRelRule]}),
-			button = document.getElementById('button'),
-			items
+			button = document.getElementById('button')
 		;
 
 		validator.setup();
-
 		button.click();
-		items = document.querySelectorAll('.cms-validation-layer > ul > li');
+
+		let items = document.querySelectorAll('.cms-validation-layer > ul > li');
 		expect(items).toHaveLength(2);
 		expect(items[0].textContent).toBe('The link has no title');
 		expect(items[1].textContent).toBe( 'The link has no rel-Attribute but uses target="_blank"');
