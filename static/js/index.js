@@ -1,7 +1,7 @@
-import * as rules from './rules';
-import {Rule as BaseRule} from './rules/Base';
+import {Rule} from './rules/Base';
+import {defaults} from './rules/defaults';
 import {Validator} from './Validator';
 
-export {rules};
-export {BaseRule};
+export {defaults as rules};
+export {Rule as BaseRule};
 export {Validator};
