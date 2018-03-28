@@ -3,20 +3,20 @@ import {find} from '../utils';
 
 export class Rule {
 
-	constructor(options) {
+	constructor(options = {}) {
 		this.options = options;
 	}
 
 	get name() {
-		throw new Error('Define a rule name.');
+		throw new Error('Define a name for rule.');
 	}
 
 	get label() {
-		throw new Error('Define a rule message label.');
+		throw new Error('Define a message label for rule.');
 	}
 
 	get selector() {
-		throw new Error('Define a rule selector.');
+		throw new Error('Define a selector for rule.');
 	}
 
 	get excludeSelector() {
@@ -49,7 +49,7 @@ export class Rule {
 	}
 
 	validate(/* element */) {
-		throw new Error('Define rule test.');
+		throw new Error('Define validation for rule.');
 	}
 
 }
